@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-songslist',
@@ -15,6 +16,7 @@ export class SongslistComponent implements OnInit {
   songsCount: number;
   songsWithoutLength: number;
   songsLength: string;
+  buffer: any;
 
   author: string = '';
   title: string = '';
@@ -85,4 +87,35 @@ export class SongslistComponent implements OnInit {
     this.clearInputs();
   }
 
+  exportList() {
+    let blob = new Blob([JSON.stringify({ songsList: this.songs }, null, 2)], { type: 'application/json' });
+    FileSaver.saveAs(blob, 'songs-list.json');    
+  }
+
+  importList(e) {
+    var fileName = e.target.files[0];
+    if (!fileName) {
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = file => {
+      var contents: any = file.target;
+      const songsList = JSON.parse(contents.result);
+      if (!songsList) {
+        throw new Error('Zły plik');
+      }
+      this.buffer = songsList.songsList;
+    };
+    reader.readAsText(fileName);
+  }
+
+  loadList(overwrite: boolean) {
+    if (overwrite) {
+      this.songs = this.buffer;
+    } else {
+      this.songs = this.songs.concat(this.buffer);
+    }
+    this.buffer = null;
+    this.countSongs();
+  }
 }

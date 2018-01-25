@@ -7,11 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SongslistComponent } from './songslist/songslist.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
-    SongslistComponent
+    SongslistComponent,
   ],
   imports: [
     BrowserModule,

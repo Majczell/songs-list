@@ -75,3 +75,27 @@
     <div class="ui right floated green button" (click)="addSong()">Dodaj</div>
   </div>
 </div>
+<div class="ui green segment">
+  <p class="ui header">Eksport listy</p>
+  <button class="fluid ui green button" (click)="exportList()">Eksportuj listę utworów</button>
+</div>
+<div class="ui orange segment">
+  <p class="ui header">Import listy</p>
+  <div>
+    <label for="file" class="ui icon button">
+      <i class="file icon"></i> Wybierz listę z dysku
+    </label>
+    <label style="color: green;" *ngIf="buffer">
+      <i class="checkmark icon"></i> Lista załadowana
+    </label>
+    <input #listInput type="file" id="file" accept=".json" style="display:none" (change)="importList($event)">
+  </div><br />
+  <div class="ui column stackable grid">
+    <div class="eight wide column">
+      <button class="fluid ui orange button" [disabled]="!buffer" (click)="loadList(); listInput.value = '';">Połącz importowaną listę z aktualną</button>
+    </div>
+    <div class="eight wide column">
+      <button class="fluid ui red button" [disabled]="!buffer" (click)="loadList(true); listInput.value = '';">Podmień aktualną listę na importowaną</button>
+    </div>
+  </div>
+</div>
