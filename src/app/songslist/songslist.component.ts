@@ -109,7 +109,7 @@ export class SongslistComponent implements OnInit {
     reader.readAsText(fileName);
   }
 
-  loadList(overwrite: boolean) {
+  loadList(overwrite?: boolean) {
     if (overwrite) {
       this.songs = this.buffer;
     } else {
