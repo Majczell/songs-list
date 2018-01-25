@@ -1,0 +1,77 @@
+<div class="ui blue segment">
+  <p class="ui header">Songs-List</p>
+  <p>Stwórz playlistę ze swoimi ulubionymi piosenkami</p>
+</div>
+<div class="ui blue segment">
+  <p class="ui header">Lista utworów</p>
+  <div class="ui grid">
+    <div class="eight wide column">
+      Dodanych utworów: {{ songsCount }}
+    </div>
+    <div class="eight wide column" style="text-align: right;">
+      Łączny czas trwania: {{ songsLength || '0:00' }}
+      <div *ngIf="songsWithoutLength > 0">
+        (Nie wliczonych utworów: {{ songsWithoutLength }})
+      </div>
+    </div>
+  </div>
+  <div class="ui divided list">
+    <div class="item" style="margin-right: 8.5em;">
+      <div class="ui grid">
+        <div class="seven wide column">
+          <p class="ui song-item">Artysta</p>
+        </div>
+        <div class="seven wide column">
+          <p class="ui song-item">Tytuł</p>
+        </div>
+        <div class="two wide column">
+          <p class="ui song-item">Czas</p>
+        </div>
+      </div>
+    </div>
+    <p *ngIf="songs.length === 0">Brak utworów</p>
+    <div class="item" *ngFor="let song of songs; let i = index">
+      <div class="right floated">
+        <div class="ui red button" (click)="removeSong(i)">Usuń</div>
+      </div>
+      <div class="ui grid">
+        <div class="seven wide column">
+          <p class="ui song-item">{{ song.author }}</p>
+        </div>
+        <div class="seven wide column">
+          <p class="ui song-item">{{ song.title }}</p>
+        </div>
+        <div class="two wide column">
+          <p class="ui song-item">{{ countLength(song.length) }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui green segment">
+  <p class="ui header">Dodaj utwór</p>
+  <div class="ui grid">
+    <div class="six wide column ui input">
+      <label class="input-label">Autor</label>
+      <div class="ui fluid input">
+        <input type="text" placeholder="Autor" [(ngModel)]="author">
+      </div>
+    </div>
+    <div class="seven wide column">
+      <label class="input-label">Tytuł</label>
+      <div class="ui fluid input">
+        <input type="text" placeholder="Tytuł" [(ngModel)]="title">
+      </div>
+    </div>
+    <div class="three wide column">
+      <label class="input-label">Czas*</label>
+      <div class="ui fluid input">
+        <input type="text" placeholder="Czas" [(ngModel)]="length">
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 10px; overflow: auto;">
+    <h6 class="ui left floated" style="display: inline; margin-left: 10px;">* Czas - długość utworu w formacie MM:SS</h6>
+    <div class="ui right floated green button" (click)="addSong()">Dodaj</div>
+  </div>
+</div>
