@@ -43,12 +43,14 @@ export class SongslistComponent implements OnInit {
       this.songsLength = '0:00';
       return;
     }
-    const songsLengthInSeconds = this.songs.map(s => s.length).reduce((p, c) => {
-      if (!c) {
+
+    let songsLengthInSeconds = 0;
+    this.songs.map(s => s.length).forEach(l => {
+      if (l === undefined) {
         songsWithoutLength++;
-        return p;
+        return;
       }
-      return p + c;
+      songsLengthInSeconds += l;
     });
     this.songsWithoutLength = songsWithoutLength;
     this.songsLength = this.countLength(songsLengthInSeconds);
