@@ -17,7 +17,7 @@
   </div>
   <div class="ui divided list">
     <div class="item" style="margin-right: 8.5em;">
-      <div class="ui grid">
+      <div class="ui column stackable grid">
         <div class="seven wide column">
           <p class="ui song-item">Artysta</p>
         </div>
@@ -34,15 +34,15 @@
       <div class="right floated">
         <div class="ui red button" (click)="removeSong(i)">Usuń</div>
       </div>
-      <div class="ui grid">
+      <div class="ui column stackable grid">
         <div class="seven wide column">
-          <p class="ui song-item">{{ song.author }}</p>
+          <p class="ui song-item">{{ song.author || '-' }}</p>
         </div>
         <div class="seven wide column">
-          <p class="ui song-item">{{ song.title }}</p>
+          <p class="ui song-item">{{ song.title || '-' }}</p>
         </div>
         <div class="two wide column">
-          <p class="ui song-item">{{ countLength(song.length) }}</p>
+          <p class="ui song-item">{{ countLength(song.length) || '-' }}</p>
         </div>
       </div>
     </div>
@@ -50,7 +50,7 @@
 </div>
 <div class="ui green segment">
   <p class="ui header">Dodaj utwór</p>
-  <div class="ui grid">
+  <div class="ui column stackable grid">
     <div class="six wide column ui input">
       <label class="input-label">Autor</label>
       <div class="ui fluid input">
