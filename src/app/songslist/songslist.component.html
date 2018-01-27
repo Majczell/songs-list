@@ -54,24 +54,23 @@
     <div class="six wide column ui input">
       <label class="input-label">Autor</label>
       <div class="ui fluid input">
-        <input type="text" placeholder="Autor" [(ngModel)]="author">
+        <input type="text" [(ngModel)]="author">
       </div>
     </div>
     <div class="seven wide column">
       <label class="input-label">Tytuł</label>
       <div class="ui fluid input">
-        <input type="text" placeholder="Tytuł" [(ngModel)]="title">
+        <input type="text" [(ngModel)]="title">
       </div>
     </div>
     <div class="three wide column">
-      <label class="input-label">Czas*</label>
+      <label class="input-label">Czas</label>
       <div class="ui fluid input">
-        <input type="text" placeholder="Czas" [(ngModel)]="length">
+        <input type="text" placeholder="MM:SS" [(ngModel)]="length">
       </div>
     </div>
   </div>
   <div style="margin-top: 10px; overflow: auto;">
-    <h6 class="ui left floated" style="display: inline; margin-left: 10px;">* Czas - długość utworu w formacie MM:SS</h6>
     <div class="ui right floated green button" (click)="addSong()">Dodaj</div>
   </div>
 </div>
@@ -99,3 +98,4 @@
     </div>
   </div>
 </div>
+<br />
